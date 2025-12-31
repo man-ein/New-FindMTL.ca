@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FindMTL.ca - Coming Soon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     <style>
         body, html {
             margin: 0;
@@ -147,7 +148,10 @@
             color: #3498db;
         }
 
+        /* MAILCHIMP STYLING FIXES */
         .subscribe-form { margin-bottom: 50px; width: 100%; display: flex; justify-content: center; }
+        #mc_embed_signup { background: transparent; width: 100%; max-width: 800px; }
+        
         .form-group {
             display: flex;
             justify-content: center;
@@ -155,7 +159,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border-radius: 12px;
             overflow: hidden;
-            max-width: 800px;
             width: 100%;
         }
         .subscribe-form input {
@@ -168,6 +171,8 @@
             flex: 1;
             min-width: 200px;
         }
+        .subscribe-form input::placeholder { color: rgba(255,255,255,0.7); }
+        
         .subscribe-form button {
             padding: 18px 40px;
             background-color: #2980b9;
@@ -178,6 +183,12 @@
             font-weight: bold;
             transition: background 0.4s;
         }
+
+        /* Success/Error message styling */
+        #mce-responses { margin: 10px 0; width: 100%; clear: both; }
+        .response { font-weight: bold; padding: 10px; border-radius: 8px; margin-top: 10px; }
+        #mce-success-response { color: #2ecc71; background: rgba(0,0,0,0.3); }
+        #mce-error-response { color: #e74c3c; background: rgba(0,0,0,0.3); }
 
         /* Footer Spacing Fixed */
         footer { 
@@ -190,23 +201,6 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
-        }
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .footer-links a { 
-            color: rgba(255, 255, 255, 0.8); 
-            text-decoration: none; 
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover { color: white; }
-        .copyright {
-            font-size: 0.85rem;
-            opacity: 0.7;
         }
 
         /* MOBILE FIXES */
@@ -238,31 +232,55 @@
         <div class="subtitle">Your hub for Montréal's Jewish community</div>
         <p>We're thrilled to be building a warm and welcoming resource just for you!<br>
         Soon you'll be able to easily find synagogues, kosher restaurants, schools, events, organizations, and ways to connect with our vibrant community across Montréal.</p>
-<h1>Got a suggestion?</h1>
-<div class="subtitle">Let us know!</div>
-<p>We exist to hear your ideas! Please click ‘Contact Us’ and submit your idea.</p>
-
-<div style="margin-top: 20px; margin-bottom: 40px;">
-    <a href="/contact-us" style="display: inline-block; padding: 16px 40px; background-color: #2980b9; color: white; text-decoration: none; border-radius: 60px; font-weight: bold; font-size: 1.1rem; transition: 0.4s;" onmouseover="this.style.backgroundColor='#3498db'; this.style.transform='translateY(-3px)'" onmouseout="this.style.backgroundColor='#2980b9'; this.style.transform='translateY(0)'">
-        Contact Us
-    </a>
-</div>
-<div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15);">
-    <div class="subtitle">To get alerted when we go live, please enter your name and email address below.</div>
-</div>
         
-        <div class="subscribe-form">
-            <form action="https://mendye.us5.list-manage.com/subscribe/post?u=f20d6385f7bb834896f8fa2d6&amp;id=edf834306d&amp;f_id=00728ae9f0" method="post" target="_blank" novalidate>
-                <div class="form-group">
-                    <input type="text" name="FNAME" placeholder="Full Name" required>
-                    <input type="email" name="EMAIL" placeholder="Email Address" required>
-                    <button type="submit">Keep Me Updated</button>
+        <h1>Got a suggestion?</h1>
+        <div class="subtitle">Let us know!</div>
+        <p>We exist to hear your ideas! Please click ‘Contact Us’ and submit your idea.</p>
+
+        <div style="margin-top: 20px; margin-bottom: 40px;">
+            <a href="/contact-us" style="display: inline-block; padding: 16px 40px; background-color: #2980b9; color: white; text-decoration: none; border-radius: 60px; font-weight: bold; font-size: 1.1rem; transition: 0.4s;" onmouseover="this.style.backgroundColor='#3498db'; this.style.transform='translateY(-3px)'" onmouseout="this.style.backgroundColor='#2980b9'; this.style.transform='translateY(0)'">
+                Contact Us
+            </a>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15);">
+            <div class="subtitle">To get alerted when we go live, please enter your name and email address below.</div>
+        </div>
+        
+        <div id="mc_embed_signup" class="subscribe-form">
+            <form action="https://mendye.us5.list-manage.com/subscribe/post?u=f20d6385f7bb834896f8fa2d6&amp;id=edf834306d&amp;f_id=00728ae9f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+                <div id="mc_embed_signup_scroll">
+                    <div class="form-group">
+                        <input type="text" name="FNAME" class="required" id="mce-FNAME" placeholder="Full Name" required>
+                        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address" required>
+                        <button type="submit" name="subscribe" id="mc-embedded-subscribe">Keep Me Updated</button>
+                    </div>
+                    
+                    <div id="mce-responses" class="clear foot">
+                        <div class="response" id="mce-error-response" style="display: none;"></div>
+                        <div class="response" id="mce-success-response" style="display: none;"></div>
+                    </div>
+
+                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                        <input type="text" name="b_f20d6385f7bb834896f8fa2d6_edf834306d" tabindex="-1" value="">
+                    </div>
                 </div>
             </form>
         </div>
     </div>
     
     <div id="footer"></div>
+
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script type="text/javascript">
+        (function($) {
+            window.fnames = new Array(); 
+            window.ftypes = new Array();
+            fnames[0]='EMAIL';ftypes[0]='email';
+            fnames[1]='FNAME';ftypes[1]='text';
+        }(jQuery));
+        var $mcj = jQuery.noConflict(true);
+    </script>
 
     <script>
         // Load header and footer
@@ -274,7 +292,6 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
 
-        // Menu toggle script (will work after header loads)
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const menu = document.getElementById('navMenu');
@@ -284,7 +301,6 @@
             }
         }
 
-        // Close menu when clicking outside
         window.onclick = function(event) {
             if (!event.target.closest('.nav-wrapper')) {
                 const hamburger = document.querySelector('.hamburger');
