@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privacy Policy • FindMTL.ca</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            color: #ffffff;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://media.istockphoto.com/id/478489838/photo/panoramic-picture-of-montreal-cityscape-at-sunset.jpg?s=612x612&w=0&k=20&c=78iWttuKv4r2Qz7U4QhLKnYg3Uy4zUumzNkHTq14DWo=') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Fixed Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        .header-content {
+            max-width: 90%;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+        .desktop-nav {
+            display: flex;
+            gap: 25px;
+        }
+        .desktop-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .desktop-nav a:hover { color: #3498db; }
+
+        /* Hamburger & Floating Menu */
+        .hamburger { cursor: pointer; padding: 5px; display: block; }
+        .hamburger span {
+            display: block; width: 30px; height: 3px; background: white;
+            margin: 6px 0; transition: 0.4s; border-radius: 2px;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+        .nav-menu {
+            position: absolute; z-index: 1100; top: 60px; right: 0;
+            background: rgba(4, 5, 5, 0.98); border-radius: 15px; padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); display: none;
+            flex-direction: column; gap: 8px; min-width: 240px; text-align: right;
+        }
+        .nav-menu.active { display: flex; }
+        .nav-menu a {
+            color: white; text-decoration: none; font-size: 1.1rem; padding: 10px 16px;
+            border-radius: 10px; transition: background 0.3s;
+        }
+        .nav-menu a:hover { background: rgba(52, 152, 219, 0.4); }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 160px 20px 60px;
+            box-sizing: border-box;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .policy-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 25px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 30px; font-weight: 300; text-align: center; }
+        h2 { font-size: 1.6rem; margin-top: 40px; color: #3498db; }
+        p, li { font-size: 1.1rem; line-height: 1.7; opacity: 0.9; }
+        ul { padding-left: 20px; }
+        strong { color: #3498db; }
+        
+        .back-link-wrapper { text-align: center; margin-top: 40px; }
+        .back-btn {
+            display: inline-block; padding: 14px 40px; background: #2980b9;
+            color: white; text-decoration: none; border-radius: 50px;
+            font-weight: bold; transition: 0.3s;
+        }
+        .back-btn:hover { background: #3498db; transform: translateY(-2px); }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover { color: white; text-decoration: underline; }
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .container { padding-top: 160px; }
+            .policy-card { padding: 30px 20px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.4rem; }
+            .nav-menu { top: 55px; width: 240px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+        <div class="policy-card">
+            <h1>Privacy Policy</h1>
+            <p><strong>Last updated: December 31, 2025</strong></p>
+
+            <p>At <strong>findmtl.ca</strong>, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or use our services, including SMS/text messaging programs.</p>
+
+            <h2>1. Information We Collect</h2>
+            <ul>
+                <li><strong>Personal Information:</strong> Name, email address, phone number (when you opt-in to SMS), or any other information you voluntarily provide.</li>
+                <li><strong>Usage Data:</strong> IP address, browser type, pages visited, and other diagnostic data.</li>
+                <li><strong>Cookies & Tracking:</strong> We use cookies to improve user experience and analyze traffic.</li>
+            </ul>
+
+            <h2>2. SMS / Text Message Marketing</h2>
+            <p>When you opt-in to receive SMS messages from findmtl.ca, you agree to receive recurring marketing and transactional text messages to the mobile number you provided.</p>
+            <p><strong>Message frequency varies.</strong> Message & data rates may apply. Simply text <strong>STOP</strong> to cancel at any time. Text <strong>HELP</strong> for assistance.</p>
+
+            <h2>3. How We Use Your Information</h2>
+            <ul>
+                <li>Provide and improve our services and tools</li>
+                <li>Send promotional SMS messages (only if you opt-in)</li>
+                <li>Respond to inquiries and provide support</li>
+                <li>Comply with legal obligations</li>
+            </ul>
+
+            <h2>4. Sharing Your Information</h2>
+            <p>We do not sell or rent your personal information. We only share data with trusted service providers (like SMS platforms) who assist in our operations or when required by law.</p>
+
+            <h2>5. Data Security</h2>
+            <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure.</p>
+
+            <h2>6. Your Rights</h2>
+            <p>You have the right to access, correct, or delete your personal information and opt-out of marketing communications at any time.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>Email: <a href="mailto:support@findmtl.ca" style="color: #3498db;">support@findmtl.ca</a></p>
+
+            <div class="back-link-wrapper">
+                <a href="/" class="back-btn">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+
+    <script>
+        // Load header and footer (use '../' if privacy-policy.html is in a subfolder, otherwise remove '../')
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('navMenu');
+            if (hamburger && menu) {
+                hamburger.classList.toggle('active');
+                menu.classList.toggle('active');
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.nav-wrapper')) {
+                const hamburger = document.querySelector('.hamburger');
+                const menu = document.getElementById('navMenu');
+                if (hamburger && hamburger.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    menu.classList.remove('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
