@@ -6,6 +6,7 @@
     <title>FindMTL.ca - Links</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* BASE STYLES */
         body, html {
             margin: 0;
             padding: 0;
@@ -20,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* --- SHARED HEADER & FOOTER STYLES (ADDED BACK) --- */
+        /* EXACT HEADER STYLES FROM MAIN PAGE */
         header {
             position: fixed;
             top: 0;
@@ -40,8 +41,21 @@
             align-items: center;
         }
         .logo { font-size: 1.8rem; font-weight: bold; color: white; text-decoration: none; }
-        .desktop-nav a { color: white; text-decoration: none; margin-left: 25px; font-weight: 500; }
-        
+        .desktop-nav { display: flex; gap: 25px; }
+        .desktop-nav a { color: white; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: color 0.3s; }
+        .desktop-nav a:hover { color: #3498db; }
+
+        /* HAMBURGER & NAV MENU */
+        .hamburger { cursor: pointer; padding: 5px; display: block; }
+        .hamburger span { display: block; width: 30px; height: 3px; background: white; margin: 6px 0; transition: 0.4s; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .nav-menu { position: absolute; z-index: 1100; top: 60px; right: 0; background: rgba(4, 5, 5, 0.98); border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); display: none; flex-direction: column; gap: 8px; min-width: 240px; text-align: right; }
+        .nav-menu.active { display: flex; }
+        .nav-menu a { color: white; text-decoration: none; padding: 10px 16px; border-radius: 10px; transition: background 0.3s; }
+
+        /* EXACT FOOTER STYLES FROM MAIN PAGE */
         footer { 
             width: 100%; 
             padding: 40px 20px; 
@@ -51,10 +65,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 20px;
             margin-top: auto;
         }
-        /* ------------------------------------------------ */
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 10px; }
+        .social-links a { color: white; font-size: 2rem; opacity: 0.8; transition: all 0.3s ease; }
+        .social-links a:hover { opacity: 1; transform: translateY(-3px); color: #3498db; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.95rem; }
 
+        /* CONTENT CONTAINER */
         .container {
             max-width: 1100px;
             width: 90%;
@@ -66,22 +86,10 @@
             align-items: center;
         }
 
-        h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 20px; 
-            letter-spacing: 1px; 
-            font-weight: 300; 
-            text-align: center; 
-        }
+        h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: 1px; font-weight: 300; text-align: center; }
+        .subtitle { font-size: 1.6rem; margin-bottom: 40px; font-style: italic; opacity: 0.9; text-align: center; }
 
-        .subtitle { 
-            font-size: 1.6rem; 
-            margin-bottom: 40px; 
-            font-style: italic; 
-            opacity: 0.9; 
-            text-align: center;
-        }
-
+        /* GRID BOXES */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -89,11 +97,9 @@
             width: 100%;
             max-width: 1000px;
         }
-
         .link-box {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 50px 20px;
@@ -108,22 +114,14 @@
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
+        .link-box:hover { background-color: #2980b9; transform: translateY(-5px); border-color: #3498db; }
 
-        .link-box:hover {
-            background-color: #2980b9;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            border-color: #3498db;
-        }
-
+        /* MOBILE FIXES */
         @media (max-width: 768px) {
+            .desktop-nav { display: none; }
             .container { padding-top: 140px; }
             h1 { font-size: 2.2rem; }
-            .subtitle { font-size: 1.2rem; }
-            .links-grid { 
-                grid-template-columns: 1fr; 
-                gap: 15px;
-            }
+            .links-grid { grid-template-columns: 1fr; gap: 15px; }
             .link-box { padding: 35px 20px; }
         }
     </style>
@@ -154,12 +152,12 @@
 
     <script>
         fetch('/header.html')
-            .then(response => response.text())
-            .then(data => { document.getElementById('header').innerHTML = data; });
+            .then(res => res.text())
+            .then(data => document.getElementById('header').innerHTML = data);
 
         fetch('/footer.html')
-            .then(response => response.text())
-            .then(data => { document.getElementById('footer').innerHTML = data; });
+            .then(res => res.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
 
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
