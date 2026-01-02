@@ -20,6 +20,21 @@
             text-align: center;
             min-height: 100vh;
         }
+
+        /* --- ZOOMING ANIMATION --- */
+        @keyframes softZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); } /* Zooms in by 5% */
+            100% { transform: scale(1); }
+        }
+
+        .zoom-text {
+            display: inline-block; /* Essential for scaling text */
+            width: 100%;
+            animation: softZoom 2.5s infinite ease-in-out;
+        }
+        /* -------------------------- */
+
         /* Fixed Header */
         header {
             position: fixed;
@@ -124,10 +139,10 @@
         }
 
         h1 { font-size: 4rem; margin-bottom: 20px; letter-spacing: 2px; font-weight: 300; }
-        .subtitle { font-size: 1.8rem; margin-bottom: 30px; font-style: italic; opacity: 0.9; }
-        p { font-size: 1.3rem; line-height: 1.6; margin-bottom: 50px; opacity: 0.9; max-width: 90%; padding: 0 10px; }
+        .subtitle { font-size: 1.8rem; margin-bottom: 15px; font-style: italic; opacity: 0.9; }
+        p { font-size: 1.3rem; line-height: 1.6; margin-top: 40px; margin-bottom: 50px; opacity: 0.9; max-width: 90%; padding: 0 10px; }
 
-        /* Footer Spacing Fixed */
+        /* Footer */
         footer {
             width: 100%;
             padding: 40px 20px;
@@ -165,46 +180,15 @@
                 padding-top: 180px;
                 justify-content: flex-start;
             }
-            h1 {
-                font-size: 2.8rem;
-                letter-spacing: 1px;
-            }
-            .subtitle {
-                font-size: 1.4rem;
-            }
-            p {
-                font-size: 1.1rem;
-                max-width: 95%;
-            }
-            .hamburger {
-                top: 20px;
-                right: 15px;
-            }
-            .hamburger span {
-                width: 28px;
-                height: 3px;
-            }
-            .nav-menu {
-                top: 70px;
-                right: 15px;
-                min-width: 180px;
-                padding: 15px;
-            }
-            .nav-menu a {
-                font-size: 1rem;
-                padding: 10px 14px;
-            }
+            h1 { font-size: 2.8rem; letter-spacing: 1px; }
+            .subtitle { font-size: 1.4rem; }
+            p { font-size: 1.1rem; max-width: 95%; }
+            .nav-menu { top: 70px; right: 15px; min-width: 180px; padding: 15px; }
         }
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2.4rem;
-            }
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            p {
-                font-size: 1rem;
-            }
+            h1 { font-size: 2.4rem; }
+            .subtitle { font-size: 1.2rem; }
+            p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -213,7 +197,11 @@
 
     <div class="container">
         <h1>Coming Soon</h1>
-        <div class="subtitle">We're Working on Something Special</div>
+        
+        <div class="subtitle zoom-text">If you have any information you can provide,</div>
+        <div class="subtitle zoom-text">Such as names, addresses, or hours</div>
+        <div class="subtitle zoom-text">Please help the community and email us at food@findmtl.ca</div>
+
         <p>This section is under construction.<br>
         Thank you for your patience – exciting things are on the way!</p>
     </div>
@@ -221,7 +209,7 @@
     <div id="footer"></div>
 
     <script>
-        // Paths changed to /header.html and /footer.html to target the root directory
+        // Loading external header/footer
         fetch('/header.html')
             .then(response => {
                 if (!response.ok) throw new Error('Header not found');
