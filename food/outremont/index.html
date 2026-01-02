@@ -21,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* --- ZOOMING ANIMATION --- */
+        /* --- ANIMATION --- */
         @keyframes softZoom {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); } 
@@ -34,12 +34,12 @@
             animation: softZoom 2.5s infinite ease-in-out;
         }
 
-        /* --- FORM EMBED STYLING --- */
+        /* --- FORM EMBED --- */
         .form-wrapper {
             width: 100%;
             max-width: 700px;
             margin: 40px auto;
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 10px;
             backdrop-filter: blur(10px);
@@ -50,21 +50,9 @@
             width: 100%;
             border: none;
             border-radius: 10px;
-            background-color: white; /* Ensures form readability */
+            background-color: white;
         }
 
-        /* Fixed Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            z-index: 1000;
-        }
-        
         /* Container & Spacing */
         .container {
             max-width: 90%;
@@ -85,19 +73,19 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.8rem; }
             .subtitle { font-size: 1.4rem; }
-            iframe { height: 700px; } /* Adjust height for mobile scrolling */
+            iframe { height: 700px; }
         }
     </style>
 </head>
 <body>
-    <div id="header"></div>
+    <header id="header-container"></header>
 
     <div class="container">
         <h1>Coming Soon</h1>
         
         <div class="subtitle zoom-text">If you have any information you can provide,</div>
         <div class="subtitle zoom-text">Such as names, addresses, or hours</div>
-        <div class="subtitle zoom-text">Please help the community and fill out the form below</div>
+        <div class="subtitle zoom-text">Please help the community and email us at food@findmtl.ca</div>
 
         <div class="form-wrapper">
             <iframe 
@@ -111,22 +99,37 @@
         </div>
 
         <p>This section is under construction.<br>
-        Thank you for your patience – exciting things are on the way!</p>
+        Thanks so much for submitting the information, you are helping out your community!</p>
     </div>
 
-    <div id="footer"></div>
+    <footer id="footer-container"></footer>
 
     <script>
-        // Existing logic for header/footer...
-        fetch('/header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data)
-            .catch(err => console.error(err));
+        // Use relative paths to ensure it works from the main directory
+        // These paths assume header.html and footer.html are in the same folder as this file
+        fetch('header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Header file not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
 
-        fetch('/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data)
-            .catch(err => console.error(err));
+        fetch('footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Footer file not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+
+        // Note: If your hamburger menu is INSIDE the header.html, 
+        // you may need to re-initialize your click listeners inside the 
+        // .then() block above to make sure they work after the HTML is injected.
     </script>
 </body>
 </html>
